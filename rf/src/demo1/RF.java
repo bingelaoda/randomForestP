@@ -39,11 +39,11 @@ public class RF {
         System.out.println("Results For Class -1- ");
 //        System.out.println("Precision=  " + evaluation.precision(0));
 //        System.out.println("Recall=  " + evaluation.recall(0));
-        System.out.println("F-measure=  " + evaluation.fMeasure(0));
-        System.out.println("Results For Class -2- ");
-        System.out.println("Precision=  " + evaluation.precision(1));
-        System.out.println("Recall=  " + evaluation.recall(1));
-        System.out.println("F-measure=  " + evaluation.fMeasure(1));
+//        System.out.println("F-measure=  " + evaluation.fMeasure(0));
+//        System.out.println("Results For Class -2- ");
+//        System.out.println("Precision=  " + evaluation.precision(1));
+//        System.out.println("Recall=  " + evaluation.recall(1));
+//        System.out.println("F-measure=  " + evaluation.fMeasure(1));
  
  
  
