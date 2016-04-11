@@ -8,7 +8,7 @@ public class MainRun {
 	@SuppressWarnings("static-access")
 	public static void main(String args[]){
 		String path = FileNameUtil.getPrjPath();
-		String traindata=path+"doc\\Data.txt";
+		String traindata=path+"doc\\test1.arff";
 		String testdata=path+"doc\\Test.txt";
 		int numTrees=100;
 		

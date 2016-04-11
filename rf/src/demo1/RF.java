@@ -3,6 +3,10 @@ package demo1;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Random;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import categ.FileNameUtil;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.trees.RandomForest;
@@ -19,9 +23,10 @@ public class RF {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        BufferedReader br = null;
+       String path = FileNameUtil.getPrjPath();
+    	BufferedReader br = null;
         int numFolds = 10;
-        br = new BufferedReader(new FileReader("D:\\test1.arff"));
+        br = new BufferedReader(new FileReader(path+"doc\\test1.arff"));
  
         Instances trainData = new Instances(br);
         trainData.setClassIndex(trainData.numAttributes() - 1);
@@ -29,7 +34,8 @@ public class RF {
         RandomForest rf = new RandomForest();
         rf.setNumTrees(500);
          
-     //   rf.buildClassifier(trainData);
+        rf.buildClassifier(trainData);
+        rf.classifyInstance(arg0)
         Evaluation evaluation = new Evaluation(trainData);
         evaluation.crossValidateModel(rf, trainData, numFolds, new Random(1));
           
