@@ -2,7 +2,6 @@ package demo1;
 
 import java.util.ArrayList;
 import java.util.List;
-import categ.FileNameUtil;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
@@ -57,7 +56,7 @@ public class RamdomForestAlg {
     
     // output predictions
     System.out.println("# - actual - predicted - error - distribution");
-    int num=0;
+//  int num=0;
     List<Double> realv = new ArrayList<>();
     List<Double> predv = new ArrayList<>();
     for (int i = 0; i < test.numInstances(); i++) {
@@ -95,51 +94,7 @@ public class RamdomForestAlg {
     }
     computeAccuracy2(realv, predv);
     
-    System.out.println(num);
   }
   
-  public static void computeAccuracy2(List<Double> realValue,List<Double> predValue){
-		double mse = 0;
-		double variance = 0;
-		double mean = 0;
-		for (int i = 0; i < realValue.size(); i++) {
-			mse += (realValue.get(i) - predValue.get(i)) * (realValue.get(i) - predValue.get(i));
-			mean += realValue.get(i);
-		}
-		mean = mean / realValue.size();
-		for (int i = 0; i < realValue.size(); i++) {
-			variance += (realValue.get(i) - mean) * (realValue.get(i) - mean);
-		}
-		double accuracy = 1 - mse / variance;
-		
-		System.out.println("Accuracy"+accuracy);
-		
-		
-		/*HashMap<Double,Double> hashMap = new HashMap<Double, Double>();
-		for(int i=0;i<realValue.size();i++){			
-				hashMap.put(realValue.get(i), predValue.get(i));
-		}
-		Collections.sort(realValue);*/
-		
-		/*for(int i=0;i<realValue.size();i++){
-			rankPredValue.add(hashMap.get(realValue.get(i)));
-		}*/
-//		for(double b:rankPredValue){
-//			System.out.println(b);
-//		}
-		int num1=0;
-		int num2=0;
-		for(int i=0;i<realValue.size();i++){
-			for(int j=i+1;j<realValue.size();j++){
-			if((predValue.get(i)<predValue.get(j)&&realValue.get(i)<realValue.get(j))
-					||(predValue.get(i)>predValue.get(j)&&realValue.get(i)>realValue.get(j))
-					||(predValue.get(i)==predValue.get(j)&&realValue.get(i)==realValue.get(j))){
-				num1++;
-			}
-			num2++;
-			}
-		}
-		
-		System.out.println("RP"+1.0*num1/num2);
-	}
+  
 }
