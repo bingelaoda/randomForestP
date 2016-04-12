@@ -11,36 +11,36 @@ import weka.core.Utils;
 import weka.core.converters.ConverterUtils.DataSource;
 
 /**
- * This example class trains a J48 classifier on a dataset and outputs for 
+ * This example class trains a Random Forest classifier on a dataset and outputs for 
  * a second dataset the actual and predicted class label, as well as the 
  * class distribution.
- * 
- * @author  FracPete (fracpete at waikato dot ac dot nz)
- * @version $Revision$
+	
+ * @author  wuxb
  */
 public class RF2 {
 
   /**
    * Expects two parameters: training file and test file.
    * 
-   * @param args	the commandline arguments
    * @throws Exception	if something goes wrong
    */
   public static void main(String[] args) throws Exception {
     // load data
 	  String path = FileNameUtil.getPrjPath();
-  	BufferedReader br = null;
+  		BufferedReader br = null;
       int numFolds = 10;
-      br = new BufferedReader(new FileReader(path+"doc\\test1.arff"));
-	  Instances trainData = new Instances(br);
+      br = new BufferedReader(new FileReader(path+"doc\\maxUtilSvr.csv"));
+      Instances trainData =DataSource.read(path+"doc\\maxUtilSvrTrain.csv");
+//      Instances trainData = new Instances(br);
 	  trainData.setClassIndex(trainData.numAttributes() - 1);
       br.close();
 //    Instances train = DataSource.read(args[0]);
 //    train.setClassIndex(train.numAttributes() - 1);
 //  	BufferedReader br = null;
-//    int numFolds = 10;
-    br = new BufferedReader(new FileReader(path+"doc\\test1.arff"));
-    Instances test = new Instances(br);
+//    int numFolds = 10;k
+    br = new BufferedReader(new FileReader(path+"doc\\maxUtilSvr.csv"));
+//    Instances test = new Instances(br);
+    Instances test = DataSource.read(path+"doc\\maxUtilSvrTest.csv");
     test.setClassIndex(test.numAttributes() - 1);
     if (!trainData.equalHeaders(test))
       throw new IllegalArgumentException(
@@ -48,7 +48,7 @@ public class RF2 {
     
     // train classifier
     RandomForest rf = new RandomForest();
-    rf.setNumTrees(500);
+    rf.setNumTrees(100);
     rf.setBatchSize("100");
     rf.setNumDecimalPlaces(10);
     rf.setPrintTrees(true);
@@ -58,19 +58,30 @@ public class RF2 {
     System.out.println("# - actual - predicted - error - distribution");
     for (int i = 0; i < test.numInstances(); i++) {
       double pred = rf.classifyInstance(test.instance(i));
-      double[] dist = rf.distributionForInstance(test.instance(i));
+//      System.out.println(pred);
+//      double[] dist = rf.distributionForInstance(test.instance(i));
       System.out.print((i+1));
-      System.out.print(" - ");
-      System.out.print(test.instance(i).toString(test.classIndex()));
-      System.out.print(" - ");
-      System.out.print(test.classAttribute().value((int) pred));
-      System.out.print(" - ");
-      if (pred != test.instance(i).classValue())
-	System.out.print("yes");
-      else
-	System.out.print("no");
-      System.out.print(" - ");
-      System.out.print(Utils.arrayToString(dist));
+//      System.out.print(" - ");
+//      System.out.println(pred);
+      int real = Integer.parseInt(test.instance(i).toString(test.classIndex()));
+//      System.out.print(Integer.parseInt(test.instance(i).toString(test.classIndex())));
+      int pred1 = (int) Math.round(pred);
+      System.out.println("    "+real+"   "+pred1);
+      
+      if(real!=pred1){
+//    	  throw new Exception("在这一次出现错误"+i);
+    	  System.out.println("chuxiancuowu"+i);
+      }
+//      System.out.print(" - ");
+//      System.out.print(test.classAttribute().value((int) pred));
+//      System.out.println(pred);
+//      System.out.print(" - ");
+//      if (pred != test.instance(i).classValue())
+//	System.out.print("yes");
+//      else
+//	System.out.print("no");
+//      System.out.print(" - ");
+//      System.out.print(Utils.arrayToString(dist));
       System.out.println();
     }
   }
