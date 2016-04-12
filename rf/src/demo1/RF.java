@@ -35,14 +35,14 @@ public class RF {
         rf.setNumTrees(500);
          
         rf.buildClassifier(trainData);
-        rf.classifyInstance(arg0)
+//        rf.classifyInstance(arg0)
         Evaluation evaluation = new Evaluation(trainData);
         evaluation.crossValidateModel(rf, trainData, numFolds, new Random(1));
           
          
-        System.out.println(evaluation.toSummaryString("\nResults\n======\n", true));
+           System.out.println(evaluation.toSummaryString("\nResults\n======\n", true));
 //        System.out.println(evaluation.toClassDetailsString());
-        System.out.println("Results For Class -1- ");
+           System.out.println("Results For Class -1- ");
 //        System.out.println("Precision=  " + evaluation.precision(0));
 //        System.out.println("Recall=  " + evaluation.recall(0));
 //        System.out.println("F-measure=  " + evaluation.fMeasure(0));
