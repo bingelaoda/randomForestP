@@ -50,7 +50,7 @@ public class RF2 {
     RandomForest rf = new RandomForest();
     rf.setNumTrees(500);
     rf.setBatchSize("100");
-    rf.setNumDecimalPlaces(10);
+//    rf.setNumDecimalPlaces(10);
     rf.setPrintTrees(true);
     rf.buildClassifier(trainData);
     
@@ -58,6 +58,7 @@ public class RF2 {
     System.out.println("# - actual - predicted - error - distribution");
     for (int i = 0; i < test.numInstances(); i++) {
       double pred = rf.classifyInstance(test.instance(i));
+      System.out.println("pred"+pred);
       double[] dist = rf.distributionForInstance(test.instance(i));
       System.out.print((i+1));
       System.out.print(" - ");
