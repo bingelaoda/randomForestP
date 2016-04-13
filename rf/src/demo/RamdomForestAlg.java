@@ -1,4 +1,4 @@
-package demo1;
+package demo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +92,11 @@ public class RamdomForestAlg {
 //      System.out.print(Utils.arrayToString(dist));
       System.out.println();
     }
-    computeAccuracy2(realv, predv);
+    double accuracy = ComputePatameter.accuracy(realv, predv);
+    double rp = ComputePatameter.rp(realv, predv);
+    
+    System.out.println("Accuracy"+accuracy);
+    System.out.println("rp"+rp);
     
   }
   

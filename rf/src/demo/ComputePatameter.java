@@ -1,4 +1,4 @@
-package demo1;
+package demo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ComputePatameter {
 
-	public double accuracy(List<Double> realValue,List<Double> predValue){
+	public static double accuracy(List<Double> realValue,List<Double> predValue){
 		double mse = 0;
 		double variance = 0;
 		double mean = 0;
@@ -24,7 +24,7 @@ public class ComputePatameter {
 		return accuracy;
 	}
 	
-	public double rp(List<Double> realValue,List<Double> predValue){
+	public static double rp(List<Double> realValue,List<Double> predValue){
 		int num1=0;
 		int num2=0;
 		for(int i=0;i<realValue.size();i++){
@@ -43,7 +43,7 @@ public class ComputePatameter {
 		return rp;
 	}
 	
-	public  int computeError(List<Double> realValue,List<Double> predValue,double precisionValue){
+	public  static int computeError(List<Double> realValue,List<Double> predValue,double precisionValue){
 		
 		List<Double> rankPredValue = new ArrayList<>();
 		HashMap<Double,Double> hashMap = new HashMap<Double, Double>();
